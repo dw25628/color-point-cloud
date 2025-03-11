@@ -1,0 +1,9 @@
+color_point_cloud:
+  ros__parameters:
+    timeout_sec: 0.1
+    point_cloud_topic: '/ouster_front/points'
+    point_cloud_frame_id: 'os_sensor_front'
+    camera_topics: ['/camera1/']
+    image_type: 0 # description:"0:RAW, 1:RECTIFIED
+    image_topic_last_name: image_raw
+    camera_info_topic_last_name: camera_info

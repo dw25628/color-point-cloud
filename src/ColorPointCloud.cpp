@@ -51,14 +51,14 @@ namespace color_point_cloud {
                 camera_type_stdmap_[camera_topic] = camera_type_ptr;
 
                 this->image_subscribers_.push_back(this->create_subscription<sensor_msgs::msg::Image>(
-                        image_topic, rclcpp::SensorDataQoS(),
+                        image_topic, 1,
                         [this, image_topic, camera_topic](const sensor_msgs::msg::Image::ConstSharedPtr &msg) {
                             // RCLCPP_INFO(this->get_logger(), "Received image on topic %s", camera_topic.c_str());
                             camera_type_stdmap_[camera_topic]->set_image_msg(msg);
                         }));
 
                 this->camera_info_subscribers_.push_back(this->create_subscription<sensor_msgs::msg::CameraInfo>(
-                        camera_info_topic, rclcpp::SensorDataQoS(), [this, camera_info_topic, camera_topic](
+                        camera_info_topic, 1, [this, camera_info_topic, camera_topic](
                                 const sensor_msgs::msg::CameraInfo::ConstSharedPtr &msg) {
                             // RCLCPP_INFO(this->get_logger(), "Received camera_info on topic %s", camera_topic.c_str());
                             camera_type_stdmap_[camera_topic]->set_camera_info(msg);
